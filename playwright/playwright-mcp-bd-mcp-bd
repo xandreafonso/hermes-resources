@@ -1,0 +1,13 @@
+mkdir -p /opt/data/bin &&
+cat > /opt/data/bin/playwright-mcp-bd <<"EOF"
+#!/bin/sh
+ENVFILE=/opt/data/profiles/tech/bot-desktop/env
+if [ -r "$ENVFILE" ]; then
+  set -a
+  . "$ENVFILE"
+  set +a
+fi
+export PLAYWRIGHT_BROWSERS_PATH=/opt/playwright-browsers
+exec playwright-mcp "$@"
+EOF
+chmod +x /opt/data/bin/playwright-mcp-bd
