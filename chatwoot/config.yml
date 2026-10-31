@@ -9,9 +9,9 @@ platforms:
             - message_created
           profile: porto
           script: chatwoot-historico.py
-          coalesce:
+          coalesce: # Cada evento novo substitui o pendente e reinicia o timer. Quando passam window_seconds sem chegada de nada, o grupo dispara uma execução do agente.
             key: '{conversation.id}'
-            window_seconds: 8
+            window_seconds: 10
           prompt: |
             Acabou de chegar uma nova mensagem pelo Chatwoot. Essa mensagem pode ter sido enviada (a) por um contato (prospects/leads/clientes) ou (b) é uma nota interna de alguém da nossa empresa.
 
